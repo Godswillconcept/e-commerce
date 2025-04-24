@@ -8,3 +8,4 @@ const conn = mysql.createConnection({
 
 conn.connect((err) => console.log(err || "Database Connected"));
 module.exports = conn.promise();
+

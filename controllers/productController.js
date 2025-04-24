@@ -1,10 +1,29 @@
 const Product = require("../models/Product");
 const { unlink } = require("fs");
 const { resolve } = require("path");
-const conn = require("../models/connection")
+const conn = require("../models/connection");
 
 let getProducts = async (req, res) => {
   let products = await Product.find();
+  for (const product of products) {
+    product.vendors = await product.getSuppliers();
+    product.stocks = await product.getTotalSupplies();
+  }
+  res.json(products);
+};
+
+let latestProducts = async (req, res) => {
+  let products = await Product.getLatestProducts();
+  for (const product of products) {
+    product.vendors = await product.getSuppliers();
+    product.stocks = await product.getTotalSupplies();
+  }
+  res.json(products);
+};
+
+
+let topDeals = async (req, res) => {
+  let products = await Product.getTopDeals();
   for (const product of products) {
     product.vendors = await product.getSuppliers();
     product.stocks = await product.getTotalSupplies();
@@ -130,6 +149,8 @@ let productSearch = (req, res) => {
 
 module.exports = {
   getProducts,
+  latestProducts,
+  topDeals,
   addProduct,
   saveProduct,
   editProduct,

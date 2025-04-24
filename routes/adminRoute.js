@@ -8,6 +8,8 @@ const {
   deleteProduct,
   productDetail,
   productSearch,
+  latestProducts,
+  topDeals,
 } = require("../controllers/productController");
 const {
   getSupplies,
@@ -59,6 +61,8 @@ router.post("/product/:id/update", updateProduct);
 router.get("/product/:id/delete", deleteProduct);
 router.get("/product/:id/detail", productDetail);
 router.get("/product?", productSearch);
+router.get("/latest-products", latestProducts);
+router.get("/products/top-deal", topDeals);
 
 
 //vendor route
@@ -88,7 +92,7 @@ router.get("/user/:id/update", editUser);
 router.post("/user/:id/update", updateUser);
 router.get("/user/:id/delete", deleteUser);
 router.get("/user/:id/detail", userDetail);
-router.post("/login", loginUser);
+router.post("/auth/login", loginUser);
 
 //supply route
 router.get("/supplies", getSupplies);
