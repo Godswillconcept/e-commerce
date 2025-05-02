@@ -20,13 +20,15 @@ const {
   parentCategories,
   productByCategory,
 } = require("../controllers/categoryController");
-const router = Router();
+const { getProductReviews } = require("../controllers/reviewController");
 
+const router = Router();
 //product route
 router.get("/products", getProducts);
 router.get("/latest-products", latestProducts);
 router.get("/products/top-deal", topDeals);
 router.get("/product?", productSearch);
+router.get('/product/:productId/reviews', getProductReviews);
 
 //user route
 router.post("/auth/login", loginUser);

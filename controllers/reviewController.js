@@ -5,6 +5,26 @@ let getReviews = async (req, res) => {
   res.json(reviews);
 };
 
+let getProductReviews = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    
+    if (!productId) {
+      return res.status(400).json({ error: "Product ID is required" });
+    }
+    
+    let reviews = await Review.find({ product_id: productId });
+    
+    if (!reviews || reviews.length === 0) {
+      return res.status(404).json({ message: "No reviews found for this product" });
+    }
+    
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 let saveReview = async (req, res) => {
   try {
     let { product_id, user_id, rating, comment, review_date } = req.body;
@@ -49,6 +69,7 @@ let deleteReview = async (req, res) => {
 
 module.exports = {
   getReviews,
+  getProductReviews,
   saveReview,
   editReview,
   updateReview,

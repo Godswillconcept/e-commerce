@@ -51,7 +51,7 @@ const {
 } = require("../controllers/userController");
 const { getOrders } = require("../controllers/orderController");
 const router = express.Router();
-
+const { getProductReviews } = require("../controllers/reviewController");
 //product route
 router.get("/products", getProducts);
 router.get("/add-product", addProduct);
@@ -63,7 +63,7 @@ router.get("/product/:id/detail", productDetail);
 router.get("/product?", productSearch);
 router.get("/latest-products", latestProducts);
 router.get("/products/top-deal", topDeals);
-
+router.get("/product/:productId/reviews", getProductReviews);
 
 //vendor route
 router.get("/vendors", getVendors);
@@ -76,8 +76,8 @@ router.get("/vendor/:id/detail", vendorDetail);
 
 //category route
 router.get("/parent-categories", parentCategories);
-router.get("/all-categories", allCategories)
-router.get("/category/:id/products", productByCategory)
+router.get("/all-categories", allCategories);
+router.get("/category/:id/products", productByCategory);
 router.get("/add-category", addCategory);
 router.post("/add-category", saveCategory);
 router.get("/category/:id/update", editCategory);
