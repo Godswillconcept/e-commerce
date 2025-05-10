@@ -2,9 +2,9 @@
   "name": "e-commerce",
   "version": "1.0.0",
   "main": "app.js",
-  "start": "nodemon app.js",
   "description": "",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,5 +18,8 @@
     "express-fileupload": "^1.4.0",
     "mysql2": "^3.2.4",
     "pluralize": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
